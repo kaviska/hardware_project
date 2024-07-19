@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Add Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+    <!-- Initialize Firebase -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyDUanfS3epMcQOiKbqZSd24r59IFeUvgA8",
+        authDomain: "hardware-project-715bc.firebaseapp.com",
+        databaseURL:
+          "https://hardware-project-715bc-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "hardware-project-715bc",
+        storageBucket: "hardware-project-715bc.appspot.com",
+        messagingSenderId: "1061605835129",
+        appId: "1:1061605835129:web:db59e5c42ef8a1ad53efa8",
+        measurementId: "G-C6TNX8NLJW",
+      };
+      firebase.initializeApp(firebaseConfig);
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center vh-100"
+      >
+        <button class="btn btn-primary w-100 mb-4" id="addUser">Add User</button>
+        <button class="btn btn-primary w-100 mb-4" id="addCompoment">
+            Add Compoment
+        </button>
+
+          <button class="btn btn-primary w-100 mb-4" id="reset">
+            Reset Cart
+          </button>
+        
+      
+        <button class="btn btn-danger w-100 mb-4" id="logout">
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const auth = firebase.auth();
+      const database = firebase.database();
+
+      let addUser = document.getElementById("addUser");
+      let addCompoment = document.getElementById("addCompoment");
+
+      let com = document.getElementById("com");
+      let logout = document.getElementById("logout");
+
+      addUser.addEventListener("click", () => {
+        window.location.href = "/addUser.html";
+      });
+
+      addCompoment.addEventListener("click", () => {
+        window.location.href = "/addCompoment.html";
+      });
+      reset.addEventListener("click", () => {
+        firebase.database().ref("cart/").set({
+          position: "true",
+        });
+        alert("Reset Cart Successfully");
+      });
+
+      logout.addEventListener("click", () => {
+        auth.signOut().then(() => {
+          window.location.href = "/index.html";
+        });
+      });
+    </script>
+  </body>
+</html>
